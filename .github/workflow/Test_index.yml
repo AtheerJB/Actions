@@ -1,17 +1,13 @@
-name: Test_index
+// test_main.js
+const { signup, login } = require('./main.js');
 
-on: push
+let users = {};
 
-jobs:
-  super-lint:
-    name: Lint code base
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+// اختبارات التسجيل
+console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Sign up successful! You can now log in.
+console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Email already exists.
 
-      - name: Run Super-Linter
-        uses: github/Test_index@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+// اختبارات الدخول
+console.log(login(users, "test@email.com", "1234")); // متوقع: Login successful!
+console.log(login(users, "test@email.com", "wrong")); // متوقع: Invalid email or password.
+console.log(login(users, "notfound@email.com", "1234")); // متوقع: Invalid email or password.
