@@ -1,15 +1,15 @@
-const { signup, login } = require('./auth.js');
+name: Node.js Simple Test
 
-let users = {};
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
-// اختبار تسجيل مستخدم جديد
-console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Sign up successful! You can now log in.
-// محاولة تسجيل بنفس الإيميل
-console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Email already exists.
-
-// تسجيل دخول صحيح
-console.log(login(users, "test@email.com", "1234")); // متوقع: Login successful!
-// تسجيل دخول بكلمة مرور خاطئة
-console.log(login(users, "test@email.com", "xxxx")); // متوقع: Invalid email or password.
-// تسجيل دخول بإيميل غير موجود
-console.log(login(users, "notfound@email.com", "1234")); // متوقع: Invalid email or password.
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run test
+        run: node test_auth.js
