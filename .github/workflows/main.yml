@@ -1,0 +1,13 @@
+// test_main.js
+const { signup, login } = require('./main.js');
+
+let users = {};
+
+// اختبارات التسجيل
+console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Sign up successful! You can now log in.
+console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Email already exists.
+
+// اختبارات الدخول
+console.log(login(users, "test@email.com", "1234")); // متوقع: Login successful!
+console.log(login(users, "test@email.com", "wrong")); // متوقع: Invalid email or password.
+console.log(login(users, "notfound@email.com", "1234")); // متوقع: Invalid email or password.
