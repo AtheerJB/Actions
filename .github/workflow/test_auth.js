@@ -1,13 +1,15 @@
-// test_main.js
-const { signup, login } = require('./main.js');
+const { signup, login } = require('./auth.js');
 
 let users = {};
 
-// اختبارات التسجيل
+// اختبار تسجيل مستخدم جديد
 console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Sign up successful! You can now log in.
+// محاولة تسجيل بنفس الإيميل
 console.log(signup(users, "Atheer", "test@email.com", "1234", "0500000000")); // متوقع: Email already exists.
 
-// اختبارات الدخول
+// تسجيل دخول صحيح
 console.log(login(users, "test@email.com", "1234")); // متوقع: Login successful!
-console.log(login(users, "test@email.com", "wrong")); // متوقع: Invalid email or password.
+// تسجيل دخول بكلمة مرور خاطئة
+console.log(login(users, "test@email.com", "xxxx")); // متوقع: Invalid email or password.
+// تسجيل دخول بإيميل غير موجود
 console.log(login(users, "notfound@email.com", "1234")); // متوقع: Invalid email or password.
