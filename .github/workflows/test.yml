@@ -20,7 +20,7 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: cd updateMetro && npm install
 
     - name: Run Jest tests
-      run: npm test
+      run: cd updateMetro && npm test
